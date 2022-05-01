@@ -16,4 +16,6 @@ export class User {
     @Column()
     password: string;
 
+    @OneToOne(()=> Admin)
+    admin: Admin;
 }
