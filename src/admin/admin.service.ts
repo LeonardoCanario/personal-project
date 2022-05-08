@@ -1,5 +1,6 @@
+import { UsersService } from './../users/users.service';
 import { Admin } from 'src/admin/entities/admin.entity';
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateAdminDto } from './dto/create-admin.dto';
 import { UpdateAdminDto } from './dto/update-admin.dto';
 
@@ -8,14 +9,21 @@ export class AdminService {
 
     private admins: Admin[] = [];
 
+    constructor( private readonly userService: UsersService){}
+
   create(createAdminDto: CreateAdminDto) {
 
     const currentMaxId = this.admins[this.admins.length -1]?.id || 0;
     const id = currentMaxId + 1;
 
+    const user = this.userService.findOne(createAdminDto.userId);
+
     const admin = {
       id,
-      ...createAdminDto,
+      name: createAdminDto.name,
+      email: createAdminDto.email,
+      password: createAdminDto.password,
+      user: user,
       
     };
 
@@ -34,10 +42,26 @@ export class AdminService {
   }
 
   update(id: number, updateAdminDto: UpdateAdminDto) {
-    return `This action updates a #${id} admin`;
+    const admin = this.findOne(id);
+    const newAdmin = {
+      ...admin,
+      ...updateAdminDto,
+    }
+    const index = this.admins.findIndex(admin => admin.id == id);
+    this.admins[index] = newAdmin;
+    return newAdmin;
   }
 
   remove(id: number) {
+
+    const index = this.admins.findIndex(admin => admin.id == id);
+
+    if( index === -1){
+      throw new NotFoundException(`User with this id ${id} no found`)
+    }
+  
+    this.admins.slice(index, 1);
+
     return `This action removes a #${id} admin`;
   }
 }
