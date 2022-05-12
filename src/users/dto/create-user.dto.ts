@@ -14,6 +14,13 @@ export class CreateUserDto {
     @MinLength(8)
      password: string;
 
+    @IsNumber()
+    age: number;
+
+    @IsNumber()
+    phone: number;
+
+
      @IsNumber()
      adminId: number;
 }

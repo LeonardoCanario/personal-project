@@ -22,7 +22,9 @@ export class UsersService {
       id,
       name: createUserDto.name,
       email: createUserDto.email,
-      password: createUserDto.password,      
+      password: createUserDto.password,
+      age: createUserDto.age,
+      phone: createUserDto.phone,    
       admin: admin,     
     };
     this.users.push(user);

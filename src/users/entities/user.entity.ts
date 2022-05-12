@@ -16,6 +16,12 @@ export class User {
     @Column()
     password: string;
 
+    @Column()
+    age: number;
+
+    @Column()
+    phone: number;
+
     @OneToOne(()=> Admin)
     admin: Admin;
 }
