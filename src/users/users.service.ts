@@ -1,4 +1,3 @@
-import { AdminService } from './../admin/admin.service';
 import { forwardRef, Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -14,7 +13,7 @@ export class UsersService {
   create(createUserDto: CreateUserDto) {
 
     const currentMaxId = this.users[this.users.length -1]?.id || 0;
-    const id = currentMaxId + 1;
+    const id = currentMaxId + 1; 
 
     createUserDto.email
     const user = {
