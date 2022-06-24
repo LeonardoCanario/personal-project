@@ -1,6 +1,6 @@
 import { UsersService } from './../users/users.service';
 import { Admin } from 'src/admin/entities/admin.entity';
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, forwardRef, Inject } from '@nestjs/common';
 import { CreateAdminDto } from './dto/create-admin.dto';
 import { UpdateAdminDto } from './dto/update-admin.dto';
 
@@ -9,7 +9,7 @@ export class AdminService {
 
     private admins: Admin[] = [];
 
-    constructor( private readonly userService: UsersService){}
+    constructor( @Inject(forwardRef(()=> UsersService)) private readonly userService: UsersService){}
 
   create(createAdminDto: CreateAdminDto) {
 
@@ -20,9 +20,9 @@ export class AdminService {
 
     const admin = {
       id,
-      name: createAdminDto.name,
-      email: createAdminDto.email,
-      password: createAdminDto.password,
+      name: user.name,
+      email: user.email,
+      password: user.password,
       user: user,
       
     };

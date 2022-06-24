@@ -5,16 +5,7 @@ export class Admin {
 
     @Column()
     id: number;
-
-    @Column()
-    name:string;
-
-    @Column()
-    email:string;
-
-    @Column()
-    password: string;
-
+    
     @OneToOne(()=> User)
     user: User;
 }

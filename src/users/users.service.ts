@@ -1,5 +1,5 @@
 import { AdminService } from './../admin/admin.service';
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { forwardRef, Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
@@ -9,14 +9,13 @@ export class UsersService {
 
   private users: User[] = [];
 
-  constructor(private readonly adminService: AdminService){}
+  constructor(){}
   
   create(createUserDto: CreateUserDto) {
 
     const currentMaxId = this.users[this.users.length -1]?.id || 0;
     const id = currentMaxId + 1;
 
-    const admin = this.adminService.findOne(createUserDto.adminId);
     createUserDto.email
     const user = {
       id,
@@ -25,7 +24,6 @@ export class UsersService {
       password: createUserDto.password,
       age: createUserDto.age,
       phone: createUserDto.phone,    
-      admin: admin,     
     };
     this.users.push(user);
     return user;

@@ -1,4 +1,3 @@
-import { Admin } from "src/admin/entities/admin.entity";
 import { Column, Entity, OneToOne } from "typeorm";
 
 @Entity()
@@ -21,7 +20,4 @@ export class User {
 
     @Column()
     phone: number;
-
-    @OneToOne(()=> Admin)
-    admin: Admin;
 }

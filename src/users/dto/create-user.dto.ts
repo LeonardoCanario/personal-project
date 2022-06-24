@@ -1,4 +1,3 @@
-import { Admin } from './../../admin/entities/admin.entity';
 import { IsNumber } from 'class-validator';
 import { MinLength } from 'class-validator';
 import { IsEmail , IsString} from 'class-validator';
@@ -19,8 +18,4 @@ export class CreateUserDto {
 
     @IsNumber()
     phone: number;
-
-
-     @IsNumber()
-     adminId: number;
 }
