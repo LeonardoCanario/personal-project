@@ -1,3 +1,4 @@
+import { UserPermissionEnum } from './../interface/user.enum';
 import { Column, Entity, OneToOne } from "typeorm";
 
 @Entity()
@@ -20,4 +21,7 @@ export class User {
 
     @Column()
     phone: number;
+
+    @Column({type: 'enum', enum: UserPermissionEnum, default: UserPermissionEnum.USER})
+    permission: UserPermissionEnum
 }

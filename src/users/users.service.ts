@@ -23,7 +23,8 @@ export class UsersService {
       email: createUserDto.email,
       password: createUserDto.password,
       age: createUserDto.age,
-      phone: createUserDto.phone,    
+      phone: createUserDto.phone,
+      permission: createUserDto.permission   
     };
     this.users.push(user);
     return user;
