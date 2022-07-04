@@ -9,7 +9,7 @@ export class User {
 
     @Column()
     name: string;
-    
+
     @Column()
     email: string;
 
@@ -22,10 +22,6 @@ export class User {
     @Column()
     phone: number;
 
-<<<<<<< HEAD
-    @Column({type: 'enum', enum: UserPermissionEnum, default: UserPermissionEnum.USER})
+    @Column({ type: 'enum', enum: UserPermissionEnum, default: UserPermissionEnum.USER })
     permission: UserPermissionEnum
-=======
-    
->>>>>>> 541619dd53aff5ef45978393e8ca53bb863f9dae
 }

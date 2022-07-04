@@ -18,7 +18,7 @@ export class CreateUserDto {
     @MinLength(8)
      password: string;
 
-     @IsNotEmpty()
+    @IsNotEmpty()
     @IsNumber()
     age: number;
 
@@ -26,6 +26,5 @@ export class CreateUserDto {
     @IsNumber()
     phone: number;
 
-    @IsNotEmpty()
     permission: UserPermissionEnum;
 }

@@ -2,6 +2,7 @@ import { forwardRef, Inject, Injectable, NotFoundException } from '@nestjs/commo
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
+import { UserPermissionEnum } from './interface/user.enum';
 
 @Injectable()
 export class UsersService {
@@ -14,7 +15,9 @@ export class UsersService {
 
     const currentMaxId = this.users[this.users.length -1]?.id || 0;
     const id = currentMaxId + 1; 
-
+    if(!createUserDto.permission){
+      createUserDto.permission = UserPermissionEnum.USER;
+    }
     createUserDto.email
     const user = {
       id,
@@ -35,7 +38,9 @@ export class UsersService {
 
   findOne(id: number) {
     const index = this.users.findIndex(user => user.id == id);
+    console.log(this.users[index].permission);
     return this.users[index];
+    
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
